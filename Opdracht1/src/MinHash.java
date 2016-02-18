@@ -89,8 +89,28 @@ public class MinHash {
 		
 		MinHashSignature result = new MinHashSignature(hashes.size(), sets.size());
 		List<String> spaceList = new ArrayList<String>(space);
-		
-		// ADD CODE HERE
+
+		for(Integer i = 0; i < spaceList.size(); i++) {
+			String s = spaceList.get(i);
+
+			for (ShingleSet set : this.sets) {
+
+				if(set.contains(s)) {
+
+					for (Integer j = 0; j < this.hashes.size(); j++) {
+						HashFunction hash = this.hashes.get(j);
+
+						Integer hashedInteger = hash.hashCode(i, this.space.size());
+
+						result.set(i, j, Math.min(result.get(i,j), hashedInteger));
+
+					}
+
+				}
+
+			}
+
+		}
 		
 		return result;
 	}
