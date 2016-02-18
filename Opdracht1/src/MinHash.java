@@ -93,16 +93,17 @@ public class MinHash {
 		for(Integer i = 0; i < spaceList.size(); i++) {
 			String s = spaceList.get(i);
 
-			for (ShingleSet set : this.sets) {
+			for (Integer j = 0; j < this.sets.size(); j++) {
+				ShingleSet set = this.sets.get(j);
 
 				if(set.contains(s)) {
 
-					for (Integer j = 0; j < this.hashes.size(); j++) {
-						HashFunction hash = this.hashes.get(j);
+					for (Integer k = 0; k < this.hashes.size(); k++) {
+						HashFunction hash = this.hashes.get(k);
 
 						Integer hashedInteger = hash.hashCode(i, this.space.size());
 
-						result.set(i, j, Math.min(result.get(i,j), hashedInteger));
+						result.set(k, j, Math.min(result.get(k,j), hashedInteger));
 
 					}
 

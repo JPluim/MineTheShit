@@ -52,13 +52,36 @@ public class Main {
 		minHash.addHashFunction(hf2);
 
 		MinHashSignature result = minHash.computeSignature();
-		result.toString();
+		System.out.println(result.toString());
 
 		//exercise1_3(mh);
 	}
 	
 	public static void exercise1_3(MinHash mh) {
-		// ADD CODE HERE
+
+		Integer k = 1;
+
+		ShingleSet s1 = new ShingleSet(k);
+		s1.shingleStrippedString("ad");
+
+		ShingleSet s2 = new ShingleSet(k);
+		s2.shingleStrippedString("c");
+
+		ShingleSet s3 = new ShingleSet(k);
+		s3.shingleStrippedString("bde");
+
+		ShingleSet s4 = new ShingleSet(k);
+		s4.shingleStrippedString("acd");
+
+		MinHash minHash = new MinHash();
+
+		minHash.addSet(s1);
+		minHash.addSet(s2);
+		minHash.addSet(s3);
+		minHash.addSet(s4);
+
+		minHash.addRandomHashFunctions(100);
+
 	}
 
 	/**
