@@ -1,0 +1,81 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[english]{babel} %English hyphenation
+\usepackage{amsmath} %Mathematical stuff
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+%Hyperreferences in the document. (e.g. \ref is clickable)
+\usepackage{hyperref}
+
+%Pseudocode
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+%You can also use the pseudocode package. http://cacr.uwaterloo.ca/~dstinson/papers/pseudocode.pdf
+%\usepackage{pseudocode}
+
+\usepackage{a4wide,times}
+\title{TI2736-C Assignment 1} 
+\author{
+	Joost Pluim, jwpluim, 4162269 \\
+	Pascal Remeijsen, premeijsen, 4286243
+}
+\begin{document}
+\maketitle
+\clearpage
+
+\chapter{Shingles}
+
+\section{Question 1}
+	
+	\subsection{Question 1.1}
+	
+		When a shingle appears twice in a set, it is only saved once. Duplicates therefore aren\'t saved. In the example set "ab" appears twice in the string, but it is only one time in the ShingleSet
+		
+\section{Question 3}
+
+	\subsection{Question 3.1}
+	
+		The word "touchdown" appears in both strings and is larger than 5 (which is the shingle size). The rest of the words are different. This means that $A$ is sentence 1, and $B$ is sentence 2, that $|A \cap B|$ is 1 because of the space. The rest of the sentence isn\'t the same. This is bigger than 5 and therefore $\frac{A \cap B}{A \cup B}$ is small which means that the Jaccard Distance is big. 
+		
+	\subsection{Question 3.2}
+		Decreasing the $k$ to 1 means that we have pretty much all shingles in common, which makes the Jaccard Distance small. 
+		
+		In case we increase the shingle size to 15, both strings don\'t have any shingles in common, so the Jaccard Distance is very big.
+		
+\section{Question 5}
+
+	\subsection{Question 5.1}
+		Only in the word touchdown, removing the spaces affects the similarity of shingles. Therefore the Jaccard distance will decrease, although it is only a little bit. 
+		
+\chapter{Minhashing}
+
+\section{Question 2}
+
+	\subsection{Question 2.1}
+	
+\section{Question 4}
+
+ 	\subsection{Question 4.1}
+ 	
+ \chapter{Locality Sensitive Hashing}
+ 
+ \section{Question 2}
+ 
+ 	\subsection{Question 2.1}
+ 	
+ \section{Question 3}
+ 
+ 	\subsection{Question 3.1}
+ 	
+ 	\subsection{Question 3.2}
+ 	
+ 	\subsection{Question 3.3}
+ 	
+ 	\subsection{Question 3.4}
+ 	
+ 	\subsection{Question 3.5}
+		
+	
+\begin{thebibliography}{9}
+\end{thebibliography}
+\end{document}
