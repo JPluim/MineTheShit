@@ -60,10 +60,28 @@ public class ShingleSet extends TreeSet<String> implements SortedSet<String> {
 	 * @return The Jaccard distance between this set and the other set.
 	 */
 	public double jaccardDistance(TreeSet<String> other) {
-		TreeSet<String> inter = this;
+		for (String string : this) {
+			System.out.println(string);
+		}
+		System.out.println();
+		for (String string : other) {
+			System.out.println(string);
+		}
+		System.out.println();
+		TreeSet<String> inter = (TreeSet<String>) this.clone();
 		inter.retainAll(other);
-		TreeSet<String> union = this;
+		
+		for (String string : inter) {
+			System.out.println(string);
+		}
+		TreeSet<String> union = (TreeSet<String>) this.clone();
 		union.addAll(other);
-		return 1 - (inter.size() / union.size());		
+		System.out.println();
+		for (String string : union) {
+			System.out.println(string);
+		}
+		System.out.println(union.size());
+		System.out.println(inter.size());
+		return 1 - ( (double)inter.size() / union.size());		
 	}
 }

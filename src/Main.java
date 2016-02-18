@@ -5,12 +5,19 @@ import java.util.Set;
 public class Main {
 	
 	public static void exercise1_1() {
-		ShingleSet shingles = new ShingleSet(2);
-		shingles.shingleStrippedString("The quarterback scored a touchdown");
+		ShingleSet shingles1 = new ShingleSet(5);
+		ShingleSet shingles2 = new ShingleSet(5);
+		shingles1.shingleString("The plane was ready for touch down");
+		shingles2.shingleString("The quarterback scored a touchdown");
 		//shingles.shingleString("The quarterback scored a touchdown");
-		for (String s : shingles) {
-			System.out.println(s);
-		}
+		System.out.println(shingles1.jaccardDistance(shingles2));
+		
+		ShingleSet shingles3 = new ShingleSet(5);
+		ShingleSet shingles4 = new ShingleSet(5);
+		shingles3.shingleStrippedString("The plane was ready for touch down");
+		shingles4.shingleStrippedString("The quarterback scored a touchdown");
+		//shingles.shingleString("The quarterback scored a touchdown");
+		System.out.println(shingles3.jaccardDistance(shingles4));
 	}
 	
 	public static void exercise1_2() {
