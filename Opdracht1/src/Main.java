@@ -1,5 +1,7 @@
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 
 public class Main {
@@ -57,7 +59,7 @@ public class Main {
 		//exercise1_3(mh);
 	}
 	
-	public static void exercise1_3(MinHash mh) {
+	public static void exercise1_3() {
 
 		Integer k = 1;
 
@@ -82,6 +84,20 @@ public class Main {
 
 		minHash.addRandomHashFunctions(100);
 
+		MinHashSignature result = minHash.computeSignature();
+
+		TreeMap<Integer, List<Integer>> candidates = LSH.computeCandidates(result, 1000, 5);
+
+		for(Map.Entry<Integer,List<Integer>> entry : candidates.entrySet()) {
+			Integer key = entry.getKey();
+			List<Integer> value = entry.getValue();
+
+			for (Integer v : value) {
+				System.out.println(key + " => " + v);
+			}
+		}
+
+
 	}
 
 	/**
@@ -92,7 +108,9 @@ public class Main {
 		//exercise1_1();
 		
 		// exercise 1.2
-		exercise1_2();
+		//exercise1_2();
+
+		exercise1_3();
 	}
 
 }

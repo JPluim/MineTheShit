@@ -1,7 +1,6 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javafx.util.Pair;
+
+import java.util.*;
 
 /**
  * 
@@ -17,7 +16,7 @@ public class LSH {
 	 * @param r The number of rows per band to be used.
 	 * @return Returns a set of indices pairs that are candidate to being similar.
 	 */
-	public static Set<List<Integer>> computeCandidates(MinHashSignature mhs, int bs, int r) {
+	public static TreeMap<Integer, List<Integer>> computeCandidates(MinHashSignature mhs, int bs, int r) {
 		// assert that the number of rows can be evenly divided by r
 		assert(mhs.rows() % r == 0);
 		
@@ -25,9 +24,65 @@ public class LSH {
 		int b = mhs.rows() / r;
 		
 		// the result
-		Set<List<Integer>> candidates = new HashSet<List<Integer>>();
-		
-		// ADD CODE HERE
+		//Set<Pair<Integer,Integer>> candidates = new HashSet<Pair<Integer,Integer>>();
+		TreeMap<Integer, List<Integer>> candidates = new TreeMap<>();
+
+		//iterate over the bands
+		for(Integer i = 0; i < b; i++) {
+
+			TreeMap<Integer,List<Integer>> buckets = new TreeMap<>();
+
+			for(Integer j = 0; j < mhs.cols(); j++) {
+
+				String s = mhs.colSegment(j, i*r, (i*r) + r);
+				Integer s_hash = s.hashCode() % bs;
+
+				List<Integer> l = buckets.get(s_hash);
+
+				if(l == null) {
+					l = new LinkedList<>();
+				}
+
+				l.add(j);
+				buckets.put(s_hash, l);
+
+			}
+
+			for(Integer key : buckets.keySet()) {
+				List<Integer> cand = buckets.get(key);
+				System.out.println(cand.toString());
+
+				if(cand.size() > 1) {
+
+					for (Integer cand1 : cand) {
+						for (Integer cand2 : cand) {
+							System.out.println(candidates.toString());
+							System.out.println(cand1 + " " + cand2);
+
+
+							if (!cand1.equals(cand2)) {
+								//Pair p = new Pair(cand1, cand2);
+								//candidates.add(p);
+
+								List<Integer> l = candidates.get(cand1);
+
+								if(l == null) {
+									l = new LinkedList<>();
+								}
+								l.add(cand2);
+
+								candidates.put(cand1, l);
+
+								//System.out.println(p.toString());
+							}
+
+						}
+					}
+				}
+
+			}
+
+		}
 		
 		return candidates;
 	}
