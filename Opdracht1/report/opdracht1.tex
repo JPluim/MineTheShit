@@ -170,12 +170,15 @@
  \section{Question 2}
  
  	\subsection{Question 2.1}
+ 	Column segments from other bands can hash to the same hashcode. This means that when selecting candidates these sets will be set as candidate however the match is a match in completely different column segment.
  	 	
  \section{Question 3}
  
  	\subsection{Question 3.1}
+ 	If column segments in the signature matrix are really similar, the possibility of column segments Min Hash Signature being the same is pretty big. If column segments aren't the same however, the probability of the column segments (definitely if the bands are small) being the same are small. However probability is still there that column segments are the same. If two column segments are the same in only 1 case (in the many rows), this means both sets are immediately selected as candidates. This results in the fact that sets which are pretty much the same, are always selected, but sets which differ a lot, might also be selected rarely.
  	
  	\subsection{Question 3.2}
+ 	
  	
  	\subsection{Question 3.3}
  	
