@@ -1,5 +1,3 @@
-import javafx.util.Pair;
-
 import java.util.*;
 
 /**
@@ -24,21 +22,26 @@ public class LSH {
 		int b = mhs.rows() / r;
 		
 		// the result
-		//Set<Pair<Integer,Integer>> candidates = new HashSet<Pair<Integer,Integer>>();
 		TreeMap<Integer, List<Integer>> candidates = new TreeMap<>();
 
 		//iterate over the bands
 		for(Integer i = 0; i < b; i++) {
 
+			//create a bucket in which we can save all sets for a hash
 			TreeMap<Integer,List<Integer>> buckets = new TreeMap<>();
 
+			//iterate over all columns (representing sets)
 			for(Integer j = 0; j < mhs.cols(); j++) {
 
-				String s = mhs.colSegment(j, i*r, (i*r) + r);
+				//get the column segment belong to column j of size r. Function colSegment is exclusive for the last element.
+				String s = mhs.colSegment(j, i*r, (i+1)*r);
+
+				//calculate the hash for the column segment
 				Integer s_hash = s.hashCode() % bs;
 
+				//add the set to the list of sets already assigned to the hash, or create a new list if no sets have been
+				//assigned yet
 				List<Integer> l = buckets.get(s_hash);
-
 				if(l == null) {
 					l = new LinkedList<>();
 				}
@@ -48,32 +51,29 @@ public class LSH {
 
 			}
 
+			//iterate over all buckets and check if buckets contain more than 1 element
 			for(Integer key : buckets.keySet()) {
 				List<Integer> cand = buckets.get(key);
-				System.out.println(cand.toString());
 
+				//if more than 1 column segment is hashed to a bucket, save all combinations of elements in that bucket
+				//as candidates.
 				if(cand.size() > 1) {
 
 					for (Integer cand1 : cand) {
 						for (Integer cand2 : cand) {
-							System.out.println(candidates.toString());
-							System.out.println(cand1 + " " + cand2);
-
 
 							if (!cand1.equals(cand2)) {
-								//Pair p = new Pair(cand1, cand2);
-								//candidates.add(p);
 
 								List<Integer> l = candidates.get(cand1);
 
 								if(l == null) {
 									l = new LinkedList<>();
 								}
-								l.add(cand2);
 
-								candidates.put(cand1, l);
-
-								//System.out.println(p.toString());
+								if(!l.contains(cand2)) {
+									l.add(cand2);
+									candidates.put(cand1, l);
+								}
 							}
 
 						}
