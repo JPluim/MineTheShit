@@ -110,7 +110,23 @@ public class Main {
 		// exercise 1.2
 		//exercise1_2();
 
-		exercise1_3();
+		//exercise1_3();
+
+		Integer k = 1;
+
+		ShingleSet s1 = new ShingleSet(k);
+		s1.shingleStrippedString("ad");
+
+		ShingleSet s2 = new ShingleSet(k);
+		s2.shingleStrippedString("c");
+
+		ShingleSet s3 = new ShingleSet(k);
+		s3.shingleStrippedString("bde");
+
+		ShingleSet s4 = new ShingleSet(k);
+		s4.shingleStrippedString("acd");
+
+		System.out.println(s3.jaccardDistance(s4));
 	}
 
 }

@@ -59,8 +59,11 @@ public class LSH {
 				//as candidates.
 				if(cand.size() > 1) {
 
-					for (Integer cand1 : cand) {
-						for (Integer cand2 : cand) {
+					for (Integer j = 0; j < cand.size(); j++) {
+					Integer cand1 = cand.get(j);
+
+						for (Integer k = j+1; k < cand.size(); k++) {
+							Integer cand2 = cand.get(k);
 
 							if (!cand1.equals(cand2)) {
 
