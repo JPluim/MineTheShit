@@ -112,7 +112,7 @@ public class Main {
 
 		//exercise1_3();
 
-		Integer k = 1;
+		/*Integer k = 1;
 
 		ShingleSet s1 = new ShingleSet(k);
 		s1.shingleStrippedString("ad");
@@ -126,7 +126,7 @@ public class Main {
 		ShingleSet s4 = new ShingleSet(k);
 		s4.shingleStrippedString("acd");
 
-		System.out.println(s3.jaccardDistance(s4));
+		System.out.println(s3.jaccardDistance(s4));*/
 	}
 
 }

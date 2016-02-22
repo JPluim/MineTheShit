@@ -1,0 +1,88 @@
+\documentclass[11pt,twoside,a4paper]{article}
+\usepackage[english]{babel} %English hyphenation
+\usepackage{amsmath} %Mathematical stuff
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+%Hyperreferences in the document. (e.g. \ref is clickable)
+\usepackage{hyperref}
+
+%Pseudocode
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+%You can also use the pseudocode package. http://cacr.uwaterloo.ca/~dstinson/papers/pseudocode.pdf
+%\usepackage{pseudocode}
+
+\usepackage{a4wide,times}
+\title{TI2736-C Assignment 1} 
+\author{
+	Joost Pluim, jwpluim, 4162269 \\
+	Pascal Remeijsen, premeijsen, 4286243
+}
+\begin{document}
+\maketitle
+\clearpage
+
+\chapter{Perceptron}
+
+\section{Question 0}
+	
+	\subsection{Question 0.1}
+	The new formula to determine if the threshold is reached is
+	
+	\begin{equation}
+		(w')^T x' \geq 0
+	\end{equation}
+	
+	\subsection{Question 0.2}
+	By multiple the transposed vector with vector $x'$ and checking if the result is positive or negative. Both positive and negative represent a class by which the feature vector can be evaluated. 
+				
+\section{Question 2}
+
+	\subsection{Question 2.1}
+	If the learning rate is low, the weights vector is only changed very little in every iteration and therefore will converge slowly.\\
+	If the learning rate is high, the weights vector is changed a lot for every faulty training record. This means the weights factor will oscillate a lot. 
+	
+\section{Question 3}
+
+	\subsection{Question 3.1}
+	
+	
+	\subsection{Question 3.2}
+	
+\section{Question 4}
+
+	\subsection{Question 4.1}
+	The dataset contains 100 images from which 50 belong to one classification and 50 belong to the other classification.
+	
+\section{Question 6}
+
+	\subsection{Question 6.1}
+	
+\section{Question 7}
+
+	\subsection{Question 7.1}
+	If we run our training algorithm multiple times on our training data it will probably (if possible) assign exactly those weights so that the prediction with these weights would be perfect for all points in our training set. \\
+	Therefore we need a completely different set of data points which isn\'t taken into account in our training, to test our $w$ for errors.
+	
+\section{Question 8}
+
+	\subsection{Question 8.1}
+	
+
+\chapter{Nearest Neighbour}
+
+\section{Question 1}
+
+	\subsection{Question 1.1}
+	
+\section{Question 3}
+
+	\subsection{Question 3.1}
+	
+
+		
+	
+\begin{thebibliography}{9}
+\end{thebibliography}
+\end{document}
