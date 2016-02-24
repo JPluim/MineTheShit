@@ -1,4 +1,8 @@
+import sun.awt.image.ImageWatched;
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
 
 public class main {
 
@@ -27,7 +31,7 @@ public class main {
 		p_train.updateWeights(d_training);
 		p_train.updateWeights(d_training);
 
-		DigitFrame df = new DigitFrame("Training Data", p_train.getWeights(), 8, 8);
+		new DigitFrame("Training Data", p_train.getWeights(), 8, 8);
 
 		Integer misclassified = 0;
 
@@ -44,18 +48,49 @@ public class main {
 	}
 
 	public static void nearestNeighbour() {
-		// add code here
+
+		Integer k = 3;
+
+		NearestNeighbour nn = new NearestNeighbour();
+		NearestNeighbourPlotter nnp = new NearestNeighbourPlotter(k);
+
+		nn.readData("data/banana.txt");
+
+		//nnp.plotData(nn);
+
+		ArrayList<Double> test = new ArrayList<>(2);
+		test.add(10.0);
+		test.add(10.0);
+		System.out.println(test.toString());
+
+		nn.predict(test, k);
+
 	}
 	
 	public static void nearestNeighbourDigits() {
-		// add code here
+
+		Integer k = 3;
+
+		Dataset d_test = new Dataset("data/test_digits.txt", false);
+
+		NearestNeighbour nn = new NearestNeighbour();
+		nn.readData("data/train_digits.txt");
+
+		Integer misclassified = 0;
+		for(FeatureVector fv : d_test) {
+			if(nn.predict(fv, k) != fv.getLabel()) {
+				misclassified++;
+			}
+		}
+
+		System.out.println("Total misclassified: " + misclassified + "/" + d_test.size());
 	}
 
 	public static void main(String[] args) {
 		//perceptron();
-		perceptronDigits();
+		//perceptronDigits();
 		//nearestNeighbour();
-		//nearestNeighbourDigits();
+		nearestNeighbourDigits();
 	}
 
 }
