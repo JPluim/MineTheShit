@@ -22,10 +22,15 @@ public class main {
 
 		Dataset d_training = new Dataset("data/train_digits.txt", true);
 
-		//ArrayList<Double> l = d.get(0);
+		//ArrayList<Double> l = d_training.get(0);
 		//System.out.println(l.toString());
+/*
 
-		//DigitFrame df = new DigitFrame("Test digitframe", l, 8, 8);
+		DigitFrame df1 = new DigitFrame("Test digitframe", d_training.get(0), 8, 8);
+		DigitFrame df2 = new DigitFrame("Test digitframe", d_training.get(1), 8, 8);
+		DigitFrame df3 = new DigitFrame("Test digitframe", d_training.get(50), 8, 8);
+		DigitFrame df4 = new DigitFrame("Test digitframe", d_training.get(51), 8, 8);
+*/
 
 		Perceptron p_train = new Perceptron(1);
 		p_train.updateWeights(d_training);
@@ -39,6 +44,8 @@ public class main {
 		for(FeatureVector fv : d_test) {
 			if(p_train.predict(fv) != fv.getLabel()) {
 				misclassified++;
+
+				DigitFrame df_error = new DigitFrame("Misclassified (label = " + fv.getLabel() +  ")", fv, 8, 8);
 			}
 		}
 
@@ -56,14 +63,14 @@ public class main {
 
 		nn.readData("data/banana.txt");
 
-		//nnp.plotData(nn);
+		nnp.plotData(nn);
 
-		ArrayList<Double> test = new ArrayList<>(2);
+		/*ArrayList<Double> test = new ArrayList<>(2);
 		test.add(10.0);
 		test.add(10.0);
 		System.out.println(test.toString());
 
-		nn.predict(test, k);
+		nn.predict(test, k);*/
 
 	}
 	
@@ -80,6 +87,7 @@ public class main {
 		for(FeatureVector fv : d_test) {
 			if(nn.predict(fv, k) != fv.getLabel()) {
 				misclassified++;
+				DigitFrame df_error = new DigitFrame("Misclassified (label = " + fv.getLabel() +  ")", fv, 8, 8);
 			}
 		}
 
