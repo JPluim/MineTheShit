@@ -98,7 +98,7 @@ public class main {
 		//perceptron();
 		//perceptronDigits();
 		//nearestNeighbour();
-		nearestNeighbourDigits();
+		//nearestNeighbourDigits();
 	}
 
 }
