@@ -27,10 +27,14 @@ public class TaxationPageRank extends PageRank {
 		HashMap<String, Double> result = new HashMap<String, Double>();
 
 		// the tools
-		Matrix randomSurfer = null;
-		Matrix transitionMatrix = null;
+		Matrix transitionMatrix = constructTransitionMatrix();
+		Matrix randomSurfer = getRandomSurferVector();
+		Matrix unitVector = randomSurfer;
 
-        // FILL IN YOUR CODE HERE
+		// FILL IN YOUR CODE HERE
+		for (int i = 0; i < iterations; i++) {
+			randomSurfer = transitionMatrix.dot(randomSurfer).multiply(beta).add(unitVector.multiply(1 - beta));
+		}
 
 		// fill the results, match names with PageRank values
 		int count = 0;

@@ -69,9 +69,25 @@ public class PageRank {
 	public Matrix constructTransitionMatrix() {
 		// the resulting matrix
 		Matrix transitionMatrix = new Matrix(data.size(), data.size());
-        
-        // FILL IN YOUR CODE HERE
 
+		// FILL IN YOUR CODE HERE
+		int numberOfOutLinks = 0;
+		int column = 0;
+		int row = 0;
+		for (Map.Entry<String, LinkedHashMap<String, Integer>> entry : data.entrySet()) {
+			numberOfOutLinks = 0;
+			for (Map.Entry<String, Integer> cell : entry.getValue().entrySet()) {
+				numberOfOutLinks += cell.getValue();
+			}
+			row = 0;
+			for (Map.Entry<String, Integer> cell : entry.getValue().entrySet()) {
+				if (cell.getValue() == 1) {
+					transitionMatrix.set(row, column, (1 / (double) numberOfOutLinks));
+				}
+				row++;
+			}
+			column++;
+		}
 		return transitionMatrix;
 	}
 
@@ -82,6 +98,9 @@ public class PageRank {
 		Matrix result = new Matrix(data.size(), 1);
 
         // FILL IN YOUR CODE HERE
+		for (int i = 0; i < data.size(); i++) {
+			result.set(i, 0, (1 / (double) data.size()));
+		}
 
 		return result;
 	}
@@ -98,10 +117,13 @@ public class PageRank {
 		HashMap<String, Double> result = new HashMap<String, Double>();
 
 		// the tools
-		Matrix transitionMatrix = null;
-		Matrix randomSurfer = null;
+		Matrix transitionMatrix = constructTransitionMatrix();
+		Matrix randomSurfer = getRandomSurferVector();
 
         // FILL IN YOUR CODE HERE
+		for (int i = 0; i < iterations; i++) {
+			randomSurfer = transitionMatrix.dot(randomSurfer);
+		}
 
 		// fill the results, match names with PageRank values
 		int count = 0;
