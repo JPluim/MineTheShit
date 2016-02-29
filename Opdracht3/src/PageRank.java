@@ -81,8 +81,8 @@ public class PageRank {
 			}
 			row = 0;
 			for (Map.Entry<String, Integer> cell : entry.getValue().entrySet()) {
-				if (cell.getValue() == 1) {
-					transitionMatrix.set(row, column, (1 / (double) numberOfOutLinks));
+				if (cell.getValue() > 1) {
+					transitionMatrix.set(row, column, (cell.getValue() / (double) numberOfOutLinks));
 				}
 				row++;
 			}
