@@ -89,19 +89,18 @@ public class HierarchicalClustering {
 		// add code here
 		Cluster one = new Cluster();
 		Cluster two = new Cluster();
-		double minDist = 0.0;
+		double minDist = Double.MAX_VALUE;
 		for (int i = 0; i < clusters.size(); i++) {
 			for (int j = i + 1; j < clusters.size(); j++) {
-				if (clusters.get(i).centroid().distance(clusters.get(j).centroid()) < minDist) {
+				double newDist = clusters.get(i).centroid().distance(clusters.get(j).centroid());
+				if (newDist < minDist) {
 					one = clusters.get(i);
 					two = clusters.get(j);
+					minDist = newDist;
 				}
 			}
 		}
-		int s = one.size();
-		for (int i = 0; i < s; i++) {
-			two.add(one.remove(i));
-		}
+		two.addAll(one);
 		clusters.remove(one);
 		//
 	}

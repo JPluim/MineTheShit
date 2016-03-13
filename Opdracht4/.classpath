@@ -1,8 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/jfreechart-1.0.16.jar"/>
-	<classpathentry kind="lib" path="lib/jcommon-1.0.20.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/TU Delf SID/.m2/repository/org/jfree/jfreechart/1.0.19/jfreechart-1.0.19.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.jfree"/>
+			<attribute name="maven.artifactId" value="jfreechart"/>
+			<attribute name="maven.version" value="1.0.19"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="lib" path="C:/Users/TU Delf SID/.m2/repository/org/jfree/jcommon/1.0.23/jcommon-1.0.23.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="maven.groupId" value="org.jfree"/>
+			<attribute name="maven.artifactId" value="jcommon"/>
+			<attribute name="maven.version" value="1.0.23"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
