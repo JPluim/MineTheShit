@@ -89,7 +89,10 @@ public class HierarchicalClusteringPlotter implements KeyListener {
 	 * Unused methods.
 	 */
 	@Override
-	public void keyReleased(KeyEvent key) {}
+	public void keyReleased(KeyEvent key) {
+	}
+
 	@Override
-	public void keyTyped(KeyEvent key) {}
+	public void keyTyped(KeyEvent key) {
+	}
 }
