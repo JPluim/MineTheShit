@@ -93,7 +93,8 @@ public class HierarchicalClustering {
 			double minDist = Double.MAX_VALUE;
 			for (int i = 0; i < clusters.size(); i++) {
 				for (int j = i + 1; j < clusters.size(); j++) {
-					double newDist = clusters.get(i).centroid().distance(clusters.get(j).centroid());
+					//double newDist = clusters.get(i).meanDistanceTo(clusters.get(j));
+					double newDist = clusters.get(i).minDistanceTo(clusters.get(j));
 					if (newDist < minDist) {
 						one = clusters.get(i);
 						two = clusters.get(j);

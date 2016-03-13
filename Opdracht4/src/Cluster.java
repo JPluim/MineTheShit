@@ -124,6 +124,8 @@ public class Cluster extends ArrayList<FeatureVector> {
 				cent.sum(vector);
 			}
 			cent.divide(this.size());
+			changed = false;
+			centroid = cent;
 			return cent;
 		}
 		//
@@ -143,7 +145,7 @@ public class Cluster extends ArrayList<FeatureVector> {
 		double dist = 0.0;
 
 		// add code here
-		dist = this.centroid.distance(other.centroid);
+		dist = this.centroid().distance(other.centroid());
 		//
 
 		return dist;
@@ -160,6 +162,12 @@ public class Cluster extends ArrayList<FeatureVector> {
 		List<Double> result = new ArrayList<Double>();
 
 		// add code here
+		for (int i = 0; i < this.size(); i++) {
+			for (int j = 0; j < other.size(); j++) {
+				result.add(this.get(i).distance(other.get(j)));
+			}
+		}
+		//
 
 		return result;
 	}
@@ -171,8 +179,14 @@ public class Cluster extends ArrayList<FeatureVector> {
 		assert (size() != 0 && other.size() != 0);
 
 		// add code here
+		double minDist = Double.MAX_VALUE;
+		List<Double> distances = distancesToCluster(other);
+		for (int i = 0; i < distances.size(); i++) {
+			minDist = Math.min(minDist, distances.get(i));
+		}
 
-		return 0.0;
+		return minDist;
+		//
 	}
 
 	/**

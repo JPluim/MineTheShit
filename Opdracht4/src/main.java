@@ -2,7 +2,9 @@ public class main {
 
 	private static void hierarchical() {
 		// add code here
+		
 		HierarchicalClusteringPlotter plotter = new HierarchicalClusteringPlotter(3, "data\\cluster.txt");
+		//HierarchicalClusteringPlotter plotter = new HierarchicalClusteringPlotter(3, "data\\cluster_lines.txt");
 	}
 
 	private static void hierarchicalDigits() {
