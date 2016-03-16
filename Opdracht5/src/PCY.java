@@ -31,8 +31,13 @@ public class PCY extends APriori {
 	@Override
 	public Set<StringSet> constructCandidates(Set<StringSet> filteredCandidates, int k) {
 		// PCY only acts on the frequent pairs
-		if (k != 1)
+		if (k != 2) {
+			//System.out.println("constructCandidates k!=2");
 			return super.constructCandidates(filteredCandidates, k);
+		} else {
+			//System.out.println("constructCandidates k==2");
+		}
+
 		
 		// the result
 		Set<StringSet> candidates = new HashSet<StringSet>();
@@ -74,6 +79,8 @@ public class PCY extends APriori {
 						hashKey += bucketSize;
 					}
 
+					//System.out.println(buckets.get(hashKey));
+
 					if(!candidate.equals(other) && buckets.get(hashKey) != null && buckets.get(hashKey) > supportThreshold) {
 						HashSet<String> candidateCopy1 = new HashSet<>(candidate);
 
@@ -109,8 +116,13 @@ public class PCY extends APriori {
 	@Override
 	public Map<StringSet, Integer> countCandidates(Set<StringSet> candidates, int k) {
 		// PCY only acts on the frequent pairs
-		if (k != 2)
+		if (k != 1) {
+			//System.out.println("countCandidates k!=1");
 			return super.countCandidates(candidates, k);
+		} else {
+			//System.out.println("countCandidates k==1");
+		}
+
 		
 		// initialize the buckets
 		buckets = new ArrayList<Integer>(bucketSize);
@@ -132,9 +144,12 @@ public class PCY extends APriori {
 						} else {
 							candidatesCount.put(candidate, count + 1);
 						}
-
+					} else {
 						StringSet s1 = new StringSet(candidate);
 						StringSet s2 = new StringSet(subset);
+
+						//System.out.println(s1);
+						//System.out.println(s2);
 
 						s1.addAll(s2);
 						Integer hashKey = s1.hashCode() % bucketSize;
@@ -142,12 +157,16 @@ public class PCY extends APriori {
 							hashKey += bucketSize;
 						}
 
+						//System.out.println(s1);
+						//System.out.println(hashKey);
+
 						if (buckets.get(hashKey) == null) {
 							buckets.set(hashKey, 1);
 						} else {
 							buckets.set(hashKey, buckets.get(hashKey) + 1);
 						}
-
+						//System.out.println(buckets.get(hashKey));
+						//System.out.println();
 					}
 				}
 			}

@@ -191,6 +191,7 @@ public class APriori {
 			Map<StringSet, Integer> candidatesCounted = countCandidates(candidatesInput, i);
 
 			filteredCandidates = filterCandidates(candidatesCounted);
+			//System.out.println(filteredCandidates);
 		}
 
 		return filteredCandidates;
