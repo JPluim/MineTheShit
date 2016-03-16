@@ -200,7 +200,12 @@ public class Cluster extends ArrayList<FeatureVector> {
 			return Double.NaN;
 
 		double rss = 0.0;
-		// add code here
+		FeatureVector centroid = centroid();
+
+		for (FeatureVector vector : this) {
+			rss += Math.pow(centroid.distance(vector),2);
+		}
+
 		return rss / size();
 	}
 }

@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class KMeans {
 	/**
@@ -70,8 +69,42 @@ public class KMeans {
 	/**
 	 * Adds a new init point at a random location in the dataset.
 	 */
-	private void addInitPoint() {
-		// add code here
+	private void addInitPoints() {
+
+		Random randomGenerator = new Random();
+		ArrayList<FeatureVector> randomPoints = new ArrayList<>();
+
+		for(int i = 0; i < k; i++) {
+			int randomInt = randomGenerator.nextInt(data.size());
+
+			Cluster c = new Cluster();
+			c.add(data.get(randomInt));
+
+			clusters.add(c);
+			randomPoints.add(data.get(randomInt));
+			data.remove(randomInt);
+		}
+
+		for(int i = 0; i < data.size(); i++) {
+			Cluster point = new Cluster();
+			FeatureVector fv = data.get(i);
+			point.add(fv);
+
+			Cluster closestCluster = new Cluster();
+			double minDist = Double.MAX_VALUE;
+
+			for(int j = 0; j < clusters.size(); j++) {
+				if(point.minDistanceTo(clusters.get(j)) < minDist) {
+					minDist = point.minDistanceTo(clusters.get(j));
+					closestCluster = clusters.get(j);
+				}
+			}
+
+			closestCluster.add(data.get(i));
+		}
+
+		data.addAll(randomPoints);
+
 	}
 	
 	/**
@@ -88,6 +121,59 @@ public class KMeans {
 	 * If no such clusters exist yet, it will select k random points.
 	 */
 	public void update() {
-		// add code here
+		if(clusters.size() == 0) {
+			addInitPoints();
+		}
+
+		ArrayList<FeatureVector> centroids = new ArrayList<>();
+
+		for(int i = 0; i < clusters.size(); i++) {
+			Cluster c = clusters.get(i);
+			centroids.add(c.centroid());
+		}
+
+		clearClusters();
+
+		HashMap<Integer, Cluster> clustersTemp = new HashMap<>();
+
+		for(int i = 0; i < data.size(); i++) {
+			FeatureVector point = data.get(i);
+			//System.out.println(point.toString());
+
+			Double minDistance = Double.MAX_VALUE;
+			int minIndex = -1 ;
+			for(int j = 0; j < centroids.size(); j++) {
+				FeatureVector centroid = centroids.get(j);
+				if(centroid.distance(point) < minDistance) {
+					minDistance = centroid.distance(point);
+					minIndex = j;
+				}
+			}
+
+			//System.out.println(minIndex + " - " + minDistance);
+
+			Cluster c = clustersTemp.get(minIndex);
+			if(c == null) {
+				c = new Cluster();
+			}
+			c.add(point);
+			clustersTemp.put(minIndex, c);
+
+			//System.out.println(c.toString());
+			//System.out.println();
+
+		}
+
+		for(int i = 0; i < clusters.size(); i++) {
+			clusters.set(i, clustersTemp.get(i));
+		}
+	}
+
+	public void update(int count) {
+
+		for(int i = 0; i < count; i++) {
+			update();
+		}
+
 	}
 }
