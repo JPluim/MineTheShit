@@ -63,6 +63,8 @@ public class PCY extends APriori {
 				temp.add(filteredCandidate);
 			}
 
+			int count = 0;
+
 			for (int i = 0; i < temp.size(); i++) {
 				HashSet<String> candidate = temp.get(i);
 
@@ -81,7 +83,10 @@ public class PCY extends APriori {
 
 					//System.out.println(buckets.get(hashKey));
 
-					if(!candidate.equals(other) && buckets.get(hashKey) != null && buckets.get(hashKey) > supportThreshold) {
+
+					if(!candidate.equals(other) && buckets.get(hashKey) != null && buckets.get(hashKey) > this.supportThreshold) {
+						count++;
+
 						HashSet<String> candidateCopy1 = new HashSet<>(candidate);
 
 						candidateCopy1.retainAll(other);
@@ -99,8 +104,11 @@ public class PCY extends APriori {
 						}
 
 					}
+
 				}
 			}
+
+			System.out.println("count: " + count);
 
 		}
 
@@ -123,7 +131,6 @@ public class PCY extends APriori {
 			//System.out.println("countCandidates k==1");
 		}
 
-		
 		// initialize the buckets
 		buckets = new ArrayList<Integer>(bucketSize);
 		for (int i = 0; i < bucketSize; i++)
@@ -144,12 +151,12 @@ public class PCY extends APriori {
 						} else {
 							candidatesCount.put(candidate, count + 1);
 						}
-					} else {
+					} else if(subsets.contains(candidate)) {
 						StringSet s1 = new StringSet(candidate);
 						StringSet s2 = new StringSet(subset);
 
-						//System.out.println(s1);
-						//System.out.println(s2);
+						//System.out.println("candidate: " + s1);
+						//System.out.println("subset: " + s2);
 
 						s1.addAll(s2);
 						Integer hashKey = s1.hashCode() % bucketSize;

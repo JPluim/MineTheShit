@@ -29,34 +29,40 @@
 \section{Question 4}
 
 	\subsection{Question 4.1}
+	At the leaves we find every single node. If we set $k$ to 1 we find at the root of the tree the cluster with all nodes.
 	
 	\subsection{Question 4.2}
+	$k$ sets the number of clusters, or the number of colours the tree has.
 	
 \section{Question 5}
 
 	\subsection{Question 5.1}
+	We see that not every line is one cluster. Because we use the mean distance, at some point the middle and lower line are merged together. 
 	
 \section{Question 7}
 
 	\subsection{Question 7.1}
+	You clearly see that all points on a line should belong together in one of the three clusters, and they also do. Now the distance between two points on a line is always smaller than the distance between two points in different clusters on different lines.
 	
 \section{Question 8}
 
 	\subsection{Question 8.1}
-	
+	Now the result isn't better because the two furthest outliers negatively influence the result now, because those are the points with the longest minimum distance to whatever other point/cluster. This means they will both have their own cluster. This means they will always be handled in the end of the algorithm, and therefore points are never added to their cluster.
 
 \textbf{$k$-means clustering}
 
 \section{Question 1}
 
 	\subsection{Question 1.1}
+	One way is to say that you search for the $k$ points which are furthest away from each other. Disadvantage is that finding these points is quite high complexity, advantage is that approach the clusters from the outside, so the initial clusters will already be quite optimal.
 	
 \section{Question 5}
 
 	\subsection{Question 5.1}
+	A good choice for $k$ would therefore be $k = 10$.
 	
 	\subsection{Question 5.2}
-		
+	If we set $k$ to the number of points, this means every point will have its own cluster. This means the RSS will be 0 for every cluster, so the sum is also 0.	
 	
 \begin{thebibliography}{9}
 \end{thebibliography}

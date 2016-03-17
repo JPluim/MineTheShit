@@ -5,6 +5,8 @@ public class main {
 
 	public static void A_Priori() {
 
+		long time = System.currentTimeMillis();
+
 		APriori AP = new APriori(3);
 
 		try {
@@ -26,13 +28,17 @@ public class main {
 
 		}
 
-		for(int i = 1; i <= 5; i++) {
+		for(int i = 1; i <= 2; i++) {
 			System.out.println(AP.getFrequentSets(i));
 		}
+
+		System.out.println("Time elapsed: " + (System.currentTimeMillis() - time));
 
 	}
 
 	public static void PCY() {
+
+		long time = System.currentTimeMillis();
 
 		PCY pcy = new PCY(3, 256);
 
@@ -55,15 +61,20 @@ public class main {
 
 		}
 
-		for(int i = 1; i <= 5; i++) {
+		for(int i = 1; i <= 2; i++) {
 			System.out.println(pcy.getFrequentSets(i));
 		}
+
+		System.out.println("Time elapsed: " + (System.currentTimeMillis() - time));
 
 	}
 
 	public static void main(String[] args) {
 
-		//A_Priori();
+		A_Priori();
+
+		System.out.println();
+
 		PCY();
 
 	}

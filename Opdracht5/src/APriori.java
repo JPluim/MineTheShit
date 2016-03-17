@@ -96,6 +96,8 @@ public class APriori {
 				temp.add(filteredCandidate);
 			}
 
+			int count = 0;
+
 			for (int i = 0; i < temp.size(); i++) {
 				HashSet<String> candidate = temp.get(i);
 
@@ -103,6 +105,7 @@ public class APriori {
 					HashSet<String> other = temp.get(j);
 
 					if(!candidate.equals(other)) {
+						count++;
 						HashSet<String> candidateCopy1 = new HashSet<>(candidate);
 
 						candidateCopy1.retainAll(other);
@@ -122,6 +125,8 @@ public class APriori {
 					}
 				}
 			}
+
+			System.out.println("count: " + count);
 			
 		}
 
