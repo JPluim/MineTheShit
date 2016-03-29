@@ -82,7 +82,6 @@ public class KMeans {
 
 			clusters.add(c);
 			randomPoints.add(data.get(randomInt));
-			data.remove(randomInt);
 		}
 
 		for(int i = 0; i < data.size(); i++) {
@@ -102,8 +101,6 @@ public class KMeans {
 
 			closestCluster.add(data.get(i));
 		}
-
-		data.addAll(randomPoints);
 
 	}
 	
@@ -138,7 +135,6 @@ public class KMeans {
 
 		for(int i = 0; i < data.size(); i++) {
 			FeatureVector point = data.get(i);
-			//System.out.println(point.toString());
 
 			Double minDistance = Double.MAX_VALUE;
 			int minIndex = -1 ;
@@ -150,17 +146,12 @@ public class KMeans {
 				}
 			}
 
-			//System.out.println(minIndex + " - " + minDistance);
-
 			Cluster c = clustersTemp.get(minIndex);
 			if(c == null) {
 				c = new Cluster();
 			}
 			c.add(point);
 			clustersTemp.put(minIndex, c);
-
-			//System.out.println(c.toString());
-			//System.out.println();
 
 		}
 

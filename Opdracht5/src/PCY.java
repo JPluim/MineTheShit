@@ -32,12 +32,8 @@ public class PCY extends APriori {
 	public Set<StringSet> constructCandidates(Set<StringSet> filteredCandidates, int k) {
 		// PCY only acts on the frequent pairs
 		if (k != 2) {
-			//System.out.println("constructCandidates k!=2");
 			return super.constructCandidates(filteredCandidates, k);
-		} else {
-			//System.out.println("constructCandidates k==2");
 		}
-
 		
 		// the result
 		Set<StringSet> candidates = new HashSet<StringSet>();
@@ -81,9 +77,6 @@ public class PCY extends APriori {
 						hashKey += bucketSize;
 					}
 
-					//System.out.println(buckets.get(hashKey));
-
-
 					if(!candidate.equals(other) && buckets.get(hashKey) != null && buckets.get(hashKey) > this.supportThreshold) {
 						count++;
 
@@ -125,10 +118,7 @@ public class PCY extends APriori {
 	public Map<StringSet, Integer> countCandidates(Set<StringSet> candidates, int k) {
 		// PCY only acts on the frequent pairs
 		if (k != 1) {
-			//System.out.println("countCandidates k!=1");
 			return super.countCandidates(candidates, k);
-		} else {
-			//System.out.println("countCandidates k==1");
 		}
 
 		// initialize the buckets
@@ -155,25 +145,17 @@ public class PCY extends APriori {
 						StringSet s1 = new StringSet(candidate);
 						StringSet s2 = new StringSet(subset);
 
-						//System.out.println("candidate: " + s1);
-						//System.out.println("subset: " + s2);
-
 						s1.addAll(s2);
 						Integer hashKey = s1.hashCode() % bucketSize;
 						if (hashKey < 0) {
 							hashKey += bucketSize;
 						}
 
-						//System.out.println(s1);
-						//System.out.println(hashKey);
-
 						if (buckets.get(hashKey) == null) {
 							buckets.set(hashKey, 1);
 						} else {
 							buckets.set(hashKey, buckets.get(hashKey) + 1);
 						}
-						//System.out.println(buckets.get(hashKey));
-						//System.out.println();
 					}
 				}
 			}
